@@ -37,7 +37,7 @@ export const Charity: React.FC<Props> = ({ onSelect }) => {
     heiferBalance: "",
   });
 
-  const [donation, setDonation] = React.useState<number>(1);
+  const [donation, setDonation] = React.useState<number>(0.3);
 
   React.useEffect(() => {
     if (machineState.context.blockChain.isConnected) {
@@ -60,13 +60,13 @@ export const Charity: React.FC<Props> = ({ onSelect }) => {
   };
 
   const incrementDonation = () => {
-    setDonation((prevState) => roundToOneDecimal(prevState + 1));
+    setDonation((prevState) => roundToOneDecimal(prevState + 0.1));
   };
 
   const decrementDonation = () => {
-    if (donation === 1) {
-      setDonation(1);
-    } else setDonation((prevState) => roundToOneDecimal(prevState - 1));
+    if (donation === 0.1) {
+      setDonation(0.1);
+    } else setDonation((prevState) => roundToOneDecimal(prevState - 0.1));
   };
 
   return (
@@ -80,9 +80,9 @@ export const Charity: React.FC<Props> = ({ onSelect }) => {
         <div id="donation-input-container">
           <input
             type="number"
-            step="10.00"
+            step="0.1"
             id="donation-input"
-            min={10.00}
+            min={0.1}
             value={donation}
             onChange={handleDonationChange}
           />
@@ -102,7 +102,7 @@ export const Charity: React.FC<Props> = ({ onSelect }) => {
           </div>
         </div>
 
-        <span id="donate-minimum-description">Minimum of $10 MATIC </span>
+        <span id="donate-minimum-description">Minimum of $0.1 MATIC </span>
         <div id="charities">
           {/* <div>
             <div className="charity">Cool Earth</div>
@@ -146,9 +146,9 @@ export const Charity: React.FC<Props> = ({ onSelect }) => {
             </div>
           </div> */}
           <div>
-            <div className="charity">Projeye Giriş Ücreti</div>
+            <div className="charity">The Water project</div>
             <span className="charity-description">
-              Oyuna Başlamak İçin Ödemeniz Gereken Miktar.
+              You can provide clean, safe and reliable water today.
             </span>
             <OverlayTrigger
               key="water"
@@ -159,7 +159,7 @@ export const Charity: React.FC<Props> = ({ onSelect }) => {
               )}
             >
               <span className="total-donated">
-                
+                {balances.waterBalance && `$${balances.waterBalance} donated`}
               </span>
             </OverlayTrigger>
 
@@ -169,7 +169,7 @@ export const Charity: React.FC<Props> = ({ onSelect }) => {
                   window.open("https://thewaterproject.org/donate-ethereum")
                 }
               >
-                Hakkımızda
+                About
                 <img src={questionMark} id="question" />
               </Button>
               <Button
@@ -180,12 +180,50 @@ export const Charity: React.FC<Props> = ({ onSelect }) => {
                   })
                 }
               >
-                Play
+                Donate & Play
               </Button>
             </div>
           </div>
-         
-         
+          <div>
+            <div className="charity">Heifer</div>
+            <span className="charity-description">
+              We do more than train farmers. We grow incomes.
+            </span>
+            <OverlayTrigger
+              key="water"
+              overlay={(props) => (
+                <Tooltip id="tooltip-water" {...props}>
+                  {Charities.Heifer}
+                </Tooltip>
+              )}
+            >
+              <span className="total-donated">
+                {balances.heiferBalance && `$${balances.heiferBalance} donated`}
+              </span>
+            </OverlayTrigger>
+            <div className="charity-buttons">
+              <Button
+                onClick={() =>
+                  window.open(
+                    "https://www.heifer.org/give/other/digital-currency.html"
+                  )
+                }
+              >
+                About
+                <img src={questionMark} id="question" />
+              </Button>
+              <Button
+                onClick={() =>
+                  onSelect({
+                    charity: Charities.Heifer,
+                    value: donation.toString(),
+                  })
+                }
+              >
+                Donate & Play
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </Panel>
