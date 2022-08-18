@@ -34,7 +34,7 @@ type Contracts = Record<ItemName, any>;
 export const MINIMUM_GAS_PRICE = 40;
 const SAVE_OFFSET_SECONDS = 5;
 export const COMMUNITY_CRAFTING_ADDRESS =
-  "0x248b3f1ead0aB11A975c55A6ed8c690B5E5A10d1";
+  "0x74A15b2C3A56A136D272faeDEeD093F086B752c5";
 
 export class BlockChain {
   private web3: Web3 | null = null;
@@ -67,7 +67,7 @@ export class BlockChain {
     try {
       this.token = new this.web3.eth.Contract(
         Token as any,
-        "0xdf9B4b57865B403e08c85568442f95c26b7896b0"
+        "0x74A15b2C3A56A136D272faeDEeD093F086B752c5"
       );
       this.farm = new this.web3.eth.Contract(
         Farm as any,
@@ -103,7 +103,7 @@ export class BlockChain {
 
       this.alchemyToken = new this.web3.eth.Contract(
         Token as any,
-        "0xdf9B4b57865B403e08c85568442f95c26b7896b0"
+        "0x74A15b2C3A56A136D272faeDEeD093F086B752c5"
       );
       this.alchemyFarm = new this.web3.eth.Contract(
         Farm as any,
@@ -771,7 +771,7 @@ export class BlockChain {
     const rate = await this.quickswap.methods
       .getAmountsIn(base, [
         "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
-        "0xdf9B4b57865B403e08c85568442f95c26b7896b0",
+        "0x74A15b2C3A56A136D272faeDEeD093F086B752c5",
       ])
       .call({ from: this.account });
 
