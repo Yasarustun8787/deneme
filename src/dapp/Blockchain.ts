@@ -34,7 +34,7 @@ type Contracts = Record<ItemName, any>;
 export const MINIMUM_GAS_PRICE = 40;
 const SAVE_OFFSET_SECONDS = 5;
 export const COMMUNITY_CRAFTING_ADDRESS =
-  "0x74A15b2C3A56A136D272faeDEeD093F086B752c5";
+  "0x248b3f1ead0aB11A975c55A6ed8c690B5E5A10d1";
 
 export class BlockChain {
   private web3: Web3 | null = null;
@@ -67,11 +67,11 @@ export class BlockChain {
     try {
       this.token = new this.web3.eth.Contract(
         Token as any,
-        "0x74A15b2C3A56A136D272faeDEeD093F086B752c5"
+        "0xAa42e2FEc48D13C42E68B2095532E458e9FC52D1"
       );
       this.farm = new this.web3.eth.Contract(
         Farm as any,
-        "0x6e5Fa679211d7F6b54e14E187D34bA547c5d3fe0"
+        "0x95647EdD026B72E48f968932b490ab707676EdCe"
       );
       this.chickens = new this.web3.eth.Contract(
         Chicken as any,
@@ -103,11 +103,11 @@ export class BlockChain {
 
       this.alchemyToken = new this.web3.eth.Contract(
         Token as any,
-        "0x74A15b2C3A56A136D272faeDEeD093F086B752c5"
+        "0xAa42e2FEc48D13C42E68B2095532E458e9FC52D1"
       );
       this.alchemyFarm = new this.web3.eth.Contract(
         Farm as any,
-        "0x6e5Fa679211d7F6b54e14E187D34bA547c5d3fe0"
+        "0x95647EdD026B72E48f968932b490ab707676EdCe"
       );
     } catch (e) {
       // Timeout, retry
@@ -771,7 +771,7 @@ export class BlockChain {
     const rate = await this.quickswap.methods
       .getAmountsIn(base, [
         "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
-        "0x74A15b2C3A56A136D272faeDEeD093F086B752c5",
+        "0xAa42e2FEc48D13C42E68B2095532E458e9FC52D1",
       ])
       .call({ from: this.account });
 
