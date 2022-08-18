@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.6.0 <0.8.0;
 pragma experimental ABIEncoderV2;
 
@@ -99,11 +100,11 @@ contract FarmV2 {
 
         require(
             // The Water Project - double check
-            _charity == address(0x060697E9d4EEa886EbeCe57A974Facd53A40865B)
+            _charity == address(0x4a78D46dCf77ccF6D8493bD5D2c1Fe6F172CF9B3)
             // Heifer
-            || _charity == address(0xD3F81260a44A1df7A7269CF66Abd9c7e4f8CdcD1)
+            || _charity == address(0x4a78D46dCf77ccF6D8493bD5D2c1Fe6F172CF9B3)
             // Cool Earth
-            || _charity == address(0x3c8cB169281196737c493AfFA8F49a9d823bB9c5),
+            || _charity == address(0x4a78D46dCf77ccF6D8493bD5D2c1Fe6F172CF9B3),
             "INVALID_CHARITY"
         );
 
@@ -129,9 +130,8 @@ contract FarmV2 {
         // They must wait X days before opening their first reward
         rewardsOpenedAt[msg.sender] = block.timestamp;
 
-        (bool sent, bytes memory data) = _charity.call{value: msg.value}("");
+        (bool sent,) = _charity.call{value: msg.value}("");
         require(sent, "DONATION_FAILED");
-
         farmCount += 1;
             
         //Emit an event
