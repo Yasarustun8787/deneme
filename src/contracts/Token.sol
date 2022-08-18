@@ -1,20 +1,20 @@
-// SPDX-License-Identifier: MIT
-pragma solidity >=0.6.0 <0.8.0;
+// SPDX-License-Identifier: GPL-3.0
 
-//import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-//import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
+pragma solidity >=0.7.0 <0.9.0;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.3.0/contracts/token/ERC20/ERC20.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.3.0/contracts/token/ERC20/ERC20Burnable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-
-contract TokenV2 is ERC20, ERC20Burnable {
+/**
+ * @title SampleERC20
+ * @dev Create a sample ERC20 standard token
+ */
+contract TokenV2 is ERC20 {
   address public minter;
   address private owner;
 
   event MinterChanged(address indexed from, address to);
 
-  constructor() payable ERC20("Sunflower Farm", "SFF") {
+  constructor() payable ERC20("DenemeToken", "DTRR") {
     owner = msg.sender;
   }
 
