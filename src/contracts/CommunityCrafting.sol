@@ -288,21 +288,21 @@ contract CommunityCrafting {
         // Sunflower Token
         path[0] = 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270;
         // WETH
-        path[1] = 0xdf9B4b57865B403e08c85568442f95c26b7896b0;
+        path[1] = 0xAa42e2FEc48D13C42E68B2095532E458e9FC52D1;
 
-        uint[] memory values = uniswapV2Router.getAmountsIn(sff, path);
+        uint[] memory values = uniswapV2Router.getAmountsIn(ELJ, path);
 
         // 20% to designer, 5% to team
         uint totalEth = values[0].mul(125).div(100);
         require(msg.value >= totalEth, "INSUFFICENT_ETH");
 
         // Transfer tokens to this contract so we can provide liquidity
-        ERC20(0xdf9B4b57865B403e08c85568442f95c26b7896b0).transferFrom(msg.sender, address(this), values[1]);
+        ERC20(0xAa42e2FEc48D13C42E68B2095532E458e9FC52D1).transferFrom(msg.sender, address(this), values[1]);
         // Approve the router just in case
-        ERC20(0xdf9B4b57865B403e08c85568442f95c26b7896b0).approve(0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff, values[1]);
+        ERC20(0xAa42e2FEc48D13C42E68B2095532E458e9FC52D1).approve(0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff, values[1]);
 
         (uint amountToken, uint amountETH, uint liquidity) = uniswapV2Router.addLiquidityETH{ value: values[0] }(
-            0xdf9B4b57865B403e08c85568442f95c26b7896b0,
+            0xAa42e2FEc48D13C42E68B2095532E458e9FC52D1,
             // Sunflower Tokens to use
             values[1],
             0, 
